@@ -1,0 +1,161 @@
+/* Intro */
+.intro__add {
+    background-color: white;
+    width: 870px;
+    height: 450px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 7vh;
+
+    border-radius: 37px;
+    box-shadow: 5px 5px 20px 0px rgb(0 0 0 / 20%);
+
+    opacity: 0;
+    transition: .3s;
+    animation: show-add 2s 1;
+    animation-fill-mode: forwards;
+    animation-delay: .3s;
+}
+@keyframes show-add {
+     0% {
+         opacity: 0;
+         margin-top: 7vh;
+     }
+     100% {
+         opacity: 1;
+         margin-top: 25vh;
+     }
+}
+
+/* Form */
+.add__header {
+    line-height: 60px;
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 57px;
+}
+.add__form {
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+.add__input {
+    width: 310px;
+    height: 35px;
+
+    padding: 10px;
+    margin: 10px 60px;
+    border-radius: 0.5rem;
+    border: 1px solid #bdbdbd;
+    transition: 0.3s;
+}
+.add__input:focus {
+    outline: none !important;
+    border: 1px solid #2F3742;
+}
+.add__select {
+    width: 310px;
+    height: 36px;
+
+    padding: 10px;
+    margin: 10px 60px;
+    border-radius: 0.5rem;
+    border: 1px solid #bdbdbd;
+    transition: 0.3s;
+}
+.add__select:focus {
+    outline: none !important;
+    border: 1px solid #2F3742;
+}
+.form__submit {
+    display: flex;
+    justify-content: center;
+}
+.add__submit {
+    cursor: pointer;
+    height: 35px;
+    width: 310px;
+    border-radius: 0.5rem;
+    border: 2px solid #2F3742;
+    background-color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #2F3742;
+    transition: 0.5s;
+    font-size: 12px;
+}
+.add__submit:hover {
+    background-color: #2F3742;
+    color: #fff;
+}
+
+.form__fields {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.add__icon {
+    height: 10px;
+    width: 10px;
+}
+
+.inp__login {
+    margin-right: 10px;
+}
+
+/* Select */
+.select__role {
+    margin: 10px 60px 0;
+    border-radius: 0.5rem;
+    border: 1px solid #bdbdbd;
+    width: 310px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.select__role:hover {
+    background: #2F3742;
+    border: 1px solid #2F3742;
+    color: #fff;
+}
+
+.list__role {
+    list-style: none;
+
+    display: none;
+    position: absolute;
+    margin-left: 60px;
+
+    width: 270px;
+    max-height: 80px;
+
+    background: #fff;
+    border-radius: 0.5rem;
+    border: 1px solid #bdbdbd;
+
+    overflow-y: scroll;
+}
+
+.list__role__item {
+    border-bottom: 1px solid #bdbdbd;
+    margin-left: -40px;
+    padding: 10px;
+}
+
+.list__role__item:last-child {
+    border-bottom: none;
+}
+
+/* Error */
+.error {
+    display: flex;
+    justify-content: center;
+
+    color: red;
+    font-size: 12px;
+    margin: 20px 0 35px 0;
+}

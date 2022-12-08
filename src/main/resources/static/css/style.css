@@ -1,0 +1,138 @@
+body {
+    margin: 0;
+    font-family: 'Play', sans-serif;
+    color: #2F3742;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+.header {
+    position: fixed;
+    background-color: white;
+    width: 100%;
+    height: 50px;
+    box-shadow: 0 0 20px 0 rgb(0 0 0 / 20%);
+    z-index: 1000;
+    top: 0;
+    left: 0;
+
+    opacity: 0;
+    margin-top: -100px;
+    transition: .3s;
+    animation: show-header 2s 1;
+    animation-fill-mode: forwards;
+    animation-delay: .3s;
+}
+@keyframes show-header {
+    0% {
+        opacity: 0;
+        margin-top: -100px;
+    }
+    100% {
+        opacity: 1;
+        margin-top: 0px;
+    }
+}
+.header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header__logo {
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 1.6;
+}
+.header__hello {
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+}
+.header__logout {
+    height: 25px;
+    width: 110px;
+    border-radius: 0.5rem;
+    border: 2px solid #2F3742;
+    background-color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #2F3742;
+    transition: 0.5s;
+    font-size: 12px;
+}
+.header__logout:hover {
+    background-color: #2F3742;
+    color: #fff;
+}
+.header__menu {
+    font-weight: bold;
+    transition: .3s ;
+    padding: 0 30px;
+}
+.header__menu:hover {
+    color: #455C7E;
+    cursor: pointer;
+}
+
+.hello {
+    display: inline-flex;
+}
+
+/* Navigation */
+.nav {
+    display: inline-flex;
+    margin-right: auto;
+}
+
+/* Footer */
+.footer {
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    height: 100px;
+    box-shadow: 0 0 20px 0px rgb(0 0 0 / 20%);
+}
+.footer__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.footer__logo {
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 100px;
+}
+
+/* Intro */
+.intro {
+    width: 100%;
+    height: auto;
+    background: url(../images/bgimage.jpg) center no-repeat;
+    background-size: cover;
+}
+.intro__inner {
+    display: flex;
+}
+
+/* Icons */
+.icons {
+    width: 40px;
+    height: 40px;
+    margin-right: 60px;
+    cursor: pointer;
+}
+
+/* Error */
+.red__error {
+    display: flex;
+    justify-content: end;
+
+    color: red;
+    font-size: 13px;
+    margin-right: 60px;
+}

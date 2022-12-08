@@ -1,0 +1,42 @@
+/* Intro */
+.intro {
+    width: 100%;
+    height: auto;
+    background: url(../images/bgimage.jpg) center no-repeat;
+    background-size: cover;
+}
+.intro__content {
+    width: 100%;
+    height: auto;
+    background-color: hsla(213, 0%, 100%, 0.7);
+
+    opacity: 0;
+    transition: .3s;
+    animation: show-content 2s 1;
+    animation-fill-mode: forwards;
+    animation-delay: .3s;
+}
+@keyframes show-content {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Content */
+.content__welcome {
+    text-align: center;
+    font-size: 70px;
+    font-weight: bold;
+    margin-top: 300px;
+    margin-bottom: 300px;
+}
+
+/* List */
+.list__users {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 300px;
+}
