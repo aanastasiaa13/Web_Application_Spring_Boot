@@ -19,7 +19,7 @@
                                     <div class="form__login">
                                         <input type="text" class="add__input inp__login" name="login"
                                                placeholder="Login: А-я A-z 0-9" value="${loginUser}"
-                                               <c:if test="${param.er == 'login'}">
+                                               <c:if test="${param.er == 'login' or param.er == 't'}">
                                                     style="border: 1px solid red"
                                                 </c:if>>
                                         <label class="red__error">
@@ -29,7 +29,7 @@
                                     <div class="form__birthday">
                                         <input type="text" class="add__input" name="birthday"
                                                placeholder="Birthday: dd.MM.yyyy" value="${birthdayUser}"
-                                                <c:if test="${param.er == 'birthday'}">
+                                                <c:if test="${param.er == 'birthday' or param.er == 't'}">
                                                        style="border: 1px solid red"
                                                 </c:if>>
                                         <label class="red__error">
@@ -39,7 +39,7 @@
                                     <div class="form__password">
                                         <input type="${typePassword}" class="add__input" name="password"
                                                placeholder="Password:" value="${passwordUser}"
-                                            <c:if test="${param.er == 'password'}">
+                                            <c:if test="${param.er == 'password' or param.er == 't'}">
                                                    style="border: 1px solid red"
                                             </c:if>>
                                         <label class="red__error">
@@ -49,7 +49,7 @@
                                     <div class="form__salary">
                                         <input type="number" class="add__input" name="salary"
                                                placeholder="Salary:" value="${salaryUser}"
-                                                <c:if test="${param.er == 'salary'}">
+                                                <c:if test="${param.er == 'salary' or param.er == 't'}">
                                                        style="border: 1px solid red"
                                                 </c:if>>
                                         <label class="red__error">
@@ -59,7 +59,7 @@
                                     <div class="form__name">
                                         <input type="text" class="add__input" name="name" placeholder="Name:"
                                                value="${nameUser}"
-                                                <c:if test="${param.er == 'name'}">
+                                                <c:if test="${param.er == 'name' or param.er == 't'}">
                                                        style="border: 1px solid red"
                                                 </c:if>>
                                         <label class="red__error">
@@ -67,7 +67,7 @@
                                         </label>
                                     </div>
                                     <div class="form__role">
-                                        <div class="select__role" onmouseup="selectRoles();">Select roles</div>
+                                        <div class="select__role" onclick="selectRoles();">Select roles</div>
                                         <ul class="list__role">
                                             <li class="list__role__item">
                                                 <label>
@@ -115,6 +115,6 @@
         </jsp:attribute>
 </t:myhtml>
 </body>
-<script src="resources/js/script.js"></script>
+<script src="js/script.js"></script>
 </html>
 

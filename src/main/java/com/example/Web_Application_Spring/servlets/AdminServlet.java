@@ -19,17 +19,11 @@ public class AdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        req.setAttribute("users", userService.getList());
-        if (req.getSession().getAttribute("login") == null &&
-                req.getSession().getAttribute("password") == null &&
-                req.getSession().getAttribute("role") == null) {
-            req.setAttribute("hide", "hidden");
-            req.getRequestDispatcher("/WEB-INF/jsp/authorization.jsp").forward(req, resp);
+
+        if (req.getSession().getAttribute("role").toString().equals("USER")) {
+            resp.sendRedirect(req.getContextPath() + "/user");
         } else {
-            if (req.getSession().getAttribute("role").toString().equals("USER")) {
-                resp.sendRedirect(req.getContextPath() + "/user");
-            } else {
-                req.getRequestDispatcher("/WEB-INF/jsp/admin.jsp").forward(req, resp);
-            }
+            req.getRequestDispatcher("/WEB-INF/jsp/admin.jsp").forward(req, resp);
         }
     }
 }

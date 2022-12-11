@@ -27,38 +27,31 @@ public class EditUsersServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (req.getSession().getAttribute("login") == null &&
-                req.getSession().getAttribute("password") == null &&
-                req.getSession().getAttribute("role") == null) {
-            req.setAttribute("hide", "hidden");
-            req.getRequestDispatcher("/WEB-INF/jsp/authorization.jsp").forward(req, resp);
+        if (req.getSession().getAttribute("role").toString().equals("USER")) {
+            resp.sendRedirect(req.getContextPath() + "/user");
         } else {
-            if (req.getSession().getAttribute("role").toString().equals("USER")) {
-                resp.sendRedirect(req.getContextPath() + "/user");
-            } else {
-                User user = userService.findUserByLogin(req.getParameter("person"));
-                List<Role> roles = userService.findUserRole(req.getParameter("person"));
+            User user = userService.findUserByLogin(req.getParameter("person"));
+            List<Role> roles = userService.findUserRole(req.getParameter("person"));
 
-                req.setAttribute("loginUser", user.getLogin());
-                req.setAttribute("passwordUser", user.getPassword());
-                req.setAttribute("nameUser", user.getName());
-                req.setAttribute("birthdayUser", user.getBirthday().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
-                req.setAttribute("salaryUser", user.getSalary());
-                for (Role role : roles) {
-                    switch (role.getName()) {
-                        case "USER" -> req.setAttribute("checkedUser", "checked");
-                        case "ADMIN" -> req.setAttribute("checkedAdmin", "checked");
-                        case "VIEWER" -> req.setAttribute("checkedViewer", "checked");
-                        case "EDITOR" -> req.setAttribute("checkedEditor", "checked");
-                        case "CONTRIBUTOR" -> req.setAttribute("checkedContributor", "checked");
-                    }
+            req.setAttribute("loginUser", user.getLogin());
+            req.setAttribute("passwordUser", user.getPassword());
+            req.setAttribute("nameUser", user.getName());
+            req.setAttribute("birthdayUser", user.getBirthday().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+            req.setAttribute("salaryUser", user.getSalary());
+            for (Role role : roles) {
+                switch (role.getRole_name()) {
+                    case "USER" -> req.setAttribute("checkedUser", "checked");
+                    case "ADMIN" -> req.setAttribute("checkedAdmin", "checked");
+                    case "VIEWER" -> req.setAttribute("checkedViewer", "checked");
+                    case "EDITOR" -> req.setAttribute("checkedEditor", "checked");
+                    case "CONTRIBUTOR" -> req.setAttribute("checkedContributor", "checked");
                 }
-
-                req.setAttribute("title", "Edit");
-                req.setAttribute("typePassword", "text");
-
-                req.getRequestDispatcher("/WEB-INF/jsp/add-edit.jsp").forward(req, resp);
             }
+
+            req.setAttribute("title", "Edit");
+            req.setAttribute("typePassword", "text");
+
+            req.getRequestDispatcher("/WEB-INF/jsp/add-edit.jsp").forward(req, resp);
         }
     }
 

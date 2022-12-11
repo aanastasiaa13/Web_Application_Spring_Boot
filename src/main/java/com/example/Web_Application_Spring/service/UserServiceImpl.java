@@ -30,16 +30,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean checkLogin(String login, String password) {
-        return userDao.checkLogin(login, password);
-    }
-
-    @Override
-    public boolean checkData(String login, String password, String name, String birthday, String salary, int age) {
-        return userDao.checkData(login, password, name, birthday, salary, age);
-    }
-
-    @Override
     public Set<User> findAllUsers() {
         return userDao.findAll();
     }

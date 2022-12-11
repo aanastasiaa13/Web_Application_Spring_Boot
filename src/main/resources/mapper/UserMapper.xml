@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.Web_Application_Spring.mapper.UserMapper">
+    <resultMap id="BaseResultMap"  type="com.example.Web_Application_Spring.mapper.UserMapper" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="login" property="login"  jdbcType="VARCHAR" />
+        <result column="password" property="password"  jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="birthday" property="birthday" jdbcType="DATE"/>
+        <result column="age" property="age" jdbcType="INTEGER"/>
+        <result column="salary" property="salary" jdbcType="INTEGER"/>
+
+        <result column="roleId" property="roleId" jdbcType="BIGINT"/>
+        <result column="roleName" property="roleName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <select id="findAllUsers" resultType="user">
+        SELECT *
+        FROM "Authorization"."Users"
+        ORDER BY id ASC
+    </select>
+
+    <select id="findUserByLogin" resultType="user">
+        SELECT *
+        FROM "Authorization"."Users"
+        WHERE login = #{login}
+    </select>
+
+    <select id="findUserRole" resultType="role">
+        SELECT "roles_names".id, "roles_names".role_name
+        FROM "Authorization"."Users" AS "users", "Role"."Roles" AS "roles_names", "Role"."Users_Roles" AS "users_roles"
+        WHERE "users".login = #{login} AND "users".id = "users_roles".user_id AND "roles_names".id = "users_roles".role_id
+    </select>
+
+    <select id="existsUserByLoginAndPassword" resultType="boolean">
+        SELECT EXISTS(
+               SELECT 1
+               FROM "Authorization"."Users"
+               WHERE login = #{login} AND password = #{password}
+                   )
+    </select>
+
+    <select id="existsUserByLogin" resultType="boolean">
+        SELECT EXISTS(
+                       SELECT 1
+                       FROM "Authorization"."Users"
+                       WHERE login = #{login}
+                   )
+    </select>
+
+    <insert id="createUser">
+        INSERT INTO "Authorization"."Users" (login, password, name, birthday, age, salary)
+        VALUES (#{login}, #{password}, #{name}, #{birthday}, #{age}, #{salary})
+    </insert>
+
+    <insert id="insertUserRole">
+        INSERT INTO "Role"."Users_Roles"
+        SELECT "users".id, "roles".id
+        FROM "Authorization"."Users" AS "users", "Role"."Roles" AS "roles"
+        WHERE "users".login = #{login} AND "roles".role_name = #{roleName}
+    </insert>
+
+    <delete id="deleteUser">
+        DELETE FROM "Authorization"."Users"
+        WHERE login = #{login}
+    </delete>
+
+    <delete id="deleteUserRole">
+        DELETE FROM "Role"."Users_Roles"
+        WHERE user_id = (
+            SELECT id
+            FROM "Authorization"."Users" WHERE login = #{login}
+            )
+    </delete>
+
+    <update id="updateUser">
+        UPDATE "Authorization"."Users"
+        SET login = #{login},
+            password = #{password},
+            name = #{name},
+            birthday = #{birthday},
+            age = #{age},
+            salary = #{salary}
+        WHERE login = #{person}
+    </update>
+</mapper>

@@ -57,6 +57,7 @@
     justify-content: center;
 }
 .signup__submit {
+    cursor: pointer;
     height: 35px;
     width: 310px;
     margin-top: 27px;

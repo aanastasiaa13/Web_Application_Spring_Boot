@@ -20,21 +20,9 @@ public class AuthorizationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (req.getSession().getAttribute("user") != null &&
-                req.getSession().getAttribute("password") != null &&
-                req.getSession().getAttribute("role") != null) {
-            if (req.getSession().getAttribute("role").toString().equals("USER")) {
-                resp.sendRedirect(req.getContextPath() + "/user");
-            }
+        req.setAttribute("hide", "hidden");
 
-            if (req.getSession().getAttribute("role").toString().equals("ADMIN")) {
-                resp.sendRedirect(req.getContextPath() + "/admin");
-            }
-        } else {
-            req.setAttribute("hide", "hidden");
-
-            req.getRequestDispatcher("/WEB-INF/jsp/authorization.jsp").forward(req, resp);
-        }
+        req.getRequestDispatcher("/WEB-INF/jsp/authorization.jsp").forward(req, resp);
     }
 
     @Override
@@ -55,9 +43,10 @@ public class AuthorizationServlet extends HttpServlet {
                     session.setAttribute("password", password);
 
                     for (Role role : userService.findUserRole(login)) {
-                        if (role.getName().equals("ADMIN") || role.getName().equals("EDITOR")) {
+                        if (role.getRole_name().equals("ADMIN") || role.getRole_name().equals("EDITOR")) {
                             resp.sendRedirect(req.getContextPath() + "/admin");
                             session.setAttribute("role", "ADMIN");
+                            break;
                         } else {
                             resp.sendRedirect(req.getContextPath() + "/user");
                             session.setAttribute("role", "USER");

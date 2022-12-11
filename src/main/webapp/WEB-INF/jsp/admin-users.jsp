@@ -47,7 +47,7 @@
                                         <td>${user.salary}</td>
                                         <td>
                                             <c:forEach var="role" items="${user.role}">
-                                                <c:out value="${role.name}"/>
+                                                <c:out value="${role.role_name}"/>
                                             </c:forEach>
                                         </td>
                                         <td><img src="images/edit.png" class="table__icon"

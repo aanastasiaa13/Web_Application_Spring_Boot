@@ -13,14 +13,11 @@ public interface UserDao {
 
     void delete(String login);
 
-    boolean checkLogin(String login, String password); //delete
-
-    boolean checkData(String login, String password, String name, String birthday, String salary, int age); //delete
-
     Set<User> findAll();
 
     User findByLogin(String login);
 
     List<Role> findRole(String login);
+
     boolean existsByLoginAndPassword(String login, String password);
 }

@@ -24,9 +24,9 @@
                                            placeholder="Password:">
                                 </div>
                                 <div style="margin-top: 20px;">
-                                    <label class="red__error">
-                                        <c:if test="${param.er == 'login' and param.er != 'password'}">Invalid login</c:if>
-                                        <c:if test="${param.er == 'password' and param.er != 'login'}">Invalid password</c:if>
+                                    <label class="red__error" style="justify-content: center; margin-right: 0">
+                                        <c:if test="${param.er == 'login' and param.er != 'password'}">The login mustn't be empty</c:if>
+                                        <c:if test="${param.er == 'password' and param.er != 'login'}">The password mustn't be empty</c:if>
                                         <c:if test="${param.er == 'login-and-password'}">You've entered an incorrect login or password</c:if>
                                     </label>
                                 </div>

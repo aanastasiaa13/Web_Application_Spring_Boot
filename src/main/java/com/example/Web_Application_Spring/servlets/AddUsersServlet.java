@@ -27,20 +27,13 @@ public class AddUsersServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (req.getSession().getAttribute("login") == null &&
-                req.getSession().getAttribute("password") == null &&
-                req.getSession().getAttribute("role") == null) {
-            req.setAttribute("hide", "hidden");
-            req.getRequestDispatcher("/WEB-INF/jsp/authorization.jsp").forward(req, resp);
+        if (req.getSession().getAttribute("role").toString().equals("USER")) {
+            resp.sendRedirect(req.getContextPath() + "/user");
         } else {
-            if (req.getSession().getAttribute("role").toString().equals("USER")) {
-                resp.sendRedirect(req.getContextPath() + "/user");
-            } else {
-                req.setAttribute("title", "Add");
-                req.setAttribute("typePassword", "password");
+            req.setAttribute("title", "Add");
+            req.setAttribute("typePassword", "password");
 
-                req.getRequestDispatcher("/WEB-INF/jsp/add-edit.jsp").forward(req, resp);
-            }
+            req.getRequestDispatcher("/WEB-INF/jsp/add-edit.jsp").forward(req, resp);
         }
     }
 
@@ -72,7 +65,7 @@ public class AddUsersServlet extends HttpServlet {
                             if (salary.equals("") || !Pattern.matches("[0-9]+", salary)) {
                                 resp.sendRedirect(req.getContextPath() + "/Add-user?er=salary");
                             } else {
-                                LocalDate birthday_ = LocalDate.parse(req.getParameter("birthday"), DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+                                LocalDate birthday_ = LocalDate.parse(birthday, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
                                 int age = Period.between(birthday_, LocalDate.now()).getYears();
                                 List<Role> roles = new ArrayList<Role>();
                                 if (req.getParameterValues("role") != null) {
@@ -90,7 +83,7 @@ public class AddUsersServlet extends HttpServlet {
                                     if (added) {
                                         resp.sendRedirect(req.getContextPath() + "/admin-users");
                                     } else {
-                                        resp.sendRedirect(req.getContextPath() + "/Add-user?er=t");
+                                        resp.sendRedirect(req.getContextPath() + "/Add-user?er=login");
 
                                     }
                                 }

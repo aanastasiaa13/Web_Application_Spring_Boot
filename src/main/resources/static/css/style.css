@@ -54,6 +54,7 @@ body {
     align-items: center;
 }
 .header__logout {
+    cursor: pointer;
     height: 25px;
     width: 110px;
     border-radius: 0.5rem;

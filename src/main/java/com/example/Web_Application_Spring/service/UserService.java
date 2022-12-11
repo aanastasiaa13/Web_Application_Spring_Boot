@@ -14,14 +14,11 @@ public interface UserService {
 
     void deleteUser(String login);
 
-    boolean checkLogin(String login, String password); //delete
-
-    boolean checkData(String login, String password, String name, String birthday, String salary, int age); //delete
-
     Set<User> findAllUsers();
 
     User findUserByLogin(String login);
 
     List<Role> findUserRole(String login);
+
     boolean existsUserByLoginAndPassword(String login, String password);
 }
